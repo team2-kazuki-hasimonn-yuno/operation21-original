@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import Demo from "../views/demo-firestore.vue"
+import Login from "../views/loginView.vue"
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: "/demo",
     name: "Demo",
     component: Demo,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
 ]
 

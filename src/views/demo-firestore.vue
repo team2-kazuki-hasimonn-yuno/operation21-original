@@ -20,12 +20,12 @@
 
 <script>
 import { collection, addDoc, getDocs } from "firebase/firestore"
-import { db } from "../firebase"
+import { db } from "../firebase.js"
 
 export default {
   data() {
     return {
-      tweets: [{}],
+      tweets: [],
       tweetText: "",
       zandaka: "",
     }
@@ -39,7 +39,7 @@ export default {
       console.log("postTweetが動いたよ")
     },
   },
-  created() {
+  async created() {
     getDocs(collection(db, "tweets")).then((snapshot) => {
       snapshot.forEach((doc) => {
         this.tweets.push({

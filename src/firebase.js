@@ -1,6 +1,7 @@
 // 必要な関数を import
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8t447kymgSmJ0vYHAxV6MESm-bOvXeyQ",
