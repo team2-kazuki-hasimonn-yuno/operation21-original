@@ -1,53 +1,41 @@
 <template>
   <div class="app">
-    残高
-    <div>
-      <input v-model="tweetText" type="text" />
-    </div>
-    コメント
-    <div>
-      <input v-model="zandaka" type="text" />
-    </div>
-    <button v-on:click="postTweet">ツイート</button>
-    <div>
-      <p v-for="tweet in tweets" :key="tweet.id">
-        {{ tweet.text }}
-        {{ tweet.zandaka }}
-      </p>
-    </div>
+    <button v-on:click="createDatabase">データベース作成</button>
   </div>
 </template>
 
 <script>
-import { collection, addDoc, getDocs } from "firebase/firestore"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { doc, setDoc } from "firebase/firestore"
 import { db } from "../firebase.js"
 
 export default {
   data() {
     return {
-      tweets: [],
-      tweetText: "",
-      zandaka: "",
+      uid: "",
+      mail: "",
+      user: [],
     }
   },
   methods: {
-    postTweet() {
-      addDoc(collection(db, "tweets"), {
-        text: this.tweetText,
-        zandaka: this.zandaka,
+    createDatabase() {
+      setDoc(doc(db, "users", this.uid), {
+        mail: this.mail,
       })
-      console.log("postTweetが動いたよ")
     },
   },
-  async created() {
-    getDocs(collection(db, "tweets")).then((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.tweets.push({
-          id: doc.id,
-          ...doc.data(),
-        })
-      })
-      console.log(this.tweets)
+  created: function () {
+    const auth = getAuth()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+        this.uid = user.uid
+        this.mail = user.email
+        console.log(this.uid)
+        console.log(this.mail)
+      } else {
+        console.log("ユーザーがログインしていません")
+      }
     })
   },
 }
