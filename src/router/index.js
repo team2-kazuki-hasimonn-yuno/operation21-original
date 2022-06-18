@@ -1,5 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router"
-import HomeView from "../views/HomeView.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+//import Demo from "../views/demo-firestore.vue";
+import OkaneViewVue from "../views/OkaneView.vue";
 
 const routes = [
   {
@@ -16,11 +18,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
-]
+  {
+    path: "/Okane",
+    name: "Money",
+    component: OkaneViewVue,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;

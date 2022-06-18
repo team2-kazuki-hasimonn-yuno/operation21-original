@@ -1,8 +1,8 @@
 // 必要な関数を import
 // eslint-disable-next-line prettier/prettier
-import { initializeApp } from "firebase/app"
+import { initializeApp } from "firebase/app";
 // eslint-disable-next-line prettier/prettier
-import { getFirestore } from "firebase/firestore"
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8t447kymgSmJ0vYHAxV6MESm-bOvXeyQ",
@@ -13,11 +13,11 @@ const firebaseConfig = {
   appId: "1:426035874669:web:f5bc7d31678754a89f2864",
   measurementId: "G-3RQ789B0EF",
   // eslint-disable-next-line prettier/prettier
-}
+};
 
 // Firebaseアプリオブジェクトを初期化
 // eslint-disable-next-line prettier/prettier
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 // Firestoreを読み込み、db(databaseの略)として export
 // eslint-disable-next-line prettier/prettier
-export const db = getFirestore(app)
+export const db = getFirestore(app);
