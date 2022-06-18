@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import login from "../views/loginView.vue"
 import signView from "../views/signView.vue"
+import Demo from "../views/demo-firestore.vue"
 
 const routes = [
   {
@@ -27,6 +28,9 @@ const routes = [
     path: "/sign",
     name: "signView",
     component: signView,
+    path: "/demo",
+    name: "Demo",
+    component: Demo,
   },
 ]
 
