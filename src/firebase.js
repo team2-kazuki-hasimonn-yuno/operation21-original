@@ -1,8 +1,10 @@
 // 必要な関数を import
+
 // eslint-disable-next-line prettier/prettier
 import { initializeApp } from "firebase/app";
 // eslint-disable-next-line prettier/prettier
 import { getFirestore } from "firebase/firestore";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8t447kymgSmJ0vYHAxV6MESm-bOvXeyQ",
@@ -21,3 +23,4 @@ const app = initializeApp(firebaseConfig);
 // Firestoreを読み込み、db(databaseの略)として export
 // eslint-disable-next-line prettier/prettier
 export const db = getFirestore(app);
+}
