@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default {
   data() {
@@ -21,23 +21,23 @@ export default {
       email: "",
       password: "",
       user: [],
-    }
+    };
   },
   methods: {
     // サインアウトしたアカウントで再度サインインする
     signIn() {
-      console.log("keisi")
-      const auth = getAuth()
+      console.log("keisi");
+      const auth = getAuth();
       signInWithEmailAndPassword(auth, this.email, this.password).then(
         (user) => {
-          console.log("userinfo" + user)
-          this.user = user
-          console.log("thisuser" + this.user)
+          console.log("userinfo" + user);
+          this.user = user;
+          console.log("thisuser" + this.user);
         }
-      )
+      );
     },
   },
-}
+};
 </script>
 
 <style scoped>

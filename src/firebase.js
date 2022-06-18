@@ -5,7 +5,6 @@ import { initializeApp } from "firebase/app";
 // eslint-disable-next-line prettier/prettier
 import { getFirestore } from "firebase/firestore";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyA8t447kymgSmJ0vYHAxV6MESm-bOvXeyQ",
   authDomain: "operation21-55e62.firebaseapp.com",
@@ -23,4 +22,3 @@ const app = initializeApp(firebaseConfig);
 // Firestoreを読み込み、db(databaseの略)として export
 // eslint-disable-next-line prettier/prettier
 export const db = getFirestore(app);
-}

@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 export default {
   data() {
@@ -66,27 +66,27 @@ export default {
       email: "",
       password: "",
       user: [],
-    }
+    };
   },
   methods: {
     async Login() {
-      console.log("lll")
-      const auth = getAuth()
+      console.log("lll");
+      const auth = getAuth();
       await createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user
-          console.log(user)
+          const user = userCredential.user;
+          console.log(user);
         })
         .catch((error) => {
-          const errorCode = error.code
-          const errorMessage = error.message
-          console.log(errorCode)
-          console.log(errorMessage)
-        })
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
     },
   },
-}
+};
 </script>
 
 <style scoped>

@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { collection, addDoc, getDocs } from "firebase/firestore"
-import { db } from "../firebase"
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default {
   data() {
@@ -28,15 +28,15 @@ export default {
       tweets: [{}],
       tweetText: "",
       zandaka: "",
-    }
+    };
   },
   methods: {
     postTweet() {
       addDoc(collection(db, "tweets"), {
         text: this.tweetText,
         zandaka: this.zandaka,
-      })
-      console.log("postTweetが動いたよ")
+      });
+      console.log("postTweetが動いたよ");
     },
   },
   created() {
@@ -45,10 +45,10 @@ export default {
         this.tweets.push({
           id: doc.id,
           ...doc.data(),
-        })
-      })
-      console.log(this.tweets)
-    })
+        });
+      });
+      console.log(this.tweets);
+    });
   },
-}
+};
 </script>
