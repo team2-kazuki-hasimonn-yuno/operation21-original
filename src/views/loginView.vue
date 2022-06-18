@@ -1,74 +1,117 @@
 <template>
-  <div class="login">
+  <div>
+    <form>
+      <h1>Register</h1>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+    </form>
     <div class="form-item">
-      <label for="email">Email</label>
-      <input id="email" autocomplete="off" type="text" v-model="email" />
-    </div>
-    <div class="form-item">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        autocomplete="off"
-        type="password"
-        v-model="password"
-      />
-    </div>
-    <div class="form-item">
-      <button class="button" v-on:click="handle()">SignIn</button>
+      <button><router-link to="/sign">新規登録</router-link></button>
+      <button v-on:click="signIn">ログイン</button>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
-export default defineComponent({
-  name: "LoginForm",
+export default {
   data() {
     return {
       email: "",
       password: "",
+      user: [],
     }
   },
-  props: {
-    login: {
-      type: Function,
-      required: true,
-    },
-  },
   methods: {
-    handle() {
-      return this.login({
-        user: {
-          email: this.email,
-          password: this.password,
-        },
-      }).catch((err) => {
-        throw err
-      })
+    // サインアウトしたアカウントで再度サインインする
+    signIn() {
+      console.log("keisi")
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.email, this.password).then(
+        (user) => {
+          console.log("userinfo" + user)
+          this.user = user
+          console.log("thisuser" + this.user)
+        }
+      )
     },
   },
-})
+}
 </script>
 
 <style scoped>
-.form-item {
-  margin: 0 auto;
-  text-align: center;
+* {
+  font-family: "Maven Pro", sans-serif;
+  box-sizing: border-box;
 }
 
-label {
-  display: block;
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(180deg, #37375a 70%, #31315a);
+  text-align: center;
+  font-family: "Segoe UI";
+}
+
+form {
+  width: 40%;
+  margin-left: 30%;
+  padding-top: 10%;
 }
 
 input {
-  width: 50%;
-  padding: 0.5em;
-  font: inherit;
+  width: 100%;
+  background: transparent;
+  border-bottom: solid 1px #7053c4;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 1rem;
+  padding: 0.5em 0.4em;
+  transition: all 0.4s;
+  color: #bdbdbd;
+  margin: 0.7rem 0;
+}
+input:focus {
+  background: #7035c4;
+  transform: scale3d(1.06, 1.06, 1.06);
 }
 
 button {
-  padding: 0.5em;
-  margin: 1em;
+  background: transparent;
+  width: 50%;
+  margin-top: 2.5rem;
+  font-size: 1rem;
+  border: solid 1px #7053c4;
+  padding: 1em 0;
+  color: #bdc3c7;
+  transition: all 0.6s;
+}
+button:hover {
+  cursor: pointer;
+  background: #7035c4;
+}
+
+h1 {
+  color: #bdc3c7;
+  border-bottom: solid 1px #7035c4;
+  padding: 0 0 0.8em 0;
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 1em;
+}
+@media (max-width: 550px) {
+  form {
+    width: 90%;
+    margin-left: 3%;
+    padding-top: 5%;
+  }
+  input {
+    font-size: 1em;
+  }
 }
 </style>
