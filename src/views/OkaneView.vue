@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase.js";
 
@@ -26,6 +27,8 @@ export default {
       nyuryokugaku: "",
       tyokingaku: 0,
       logs: [],
+      uidd: "",
+      mail: "",
     };
   },
   methods: {
@@ -67,6 +70,21 @@ export default {
         return true;
       }
     },
+  },
+  // ユーザーがログインしている場合、そのユーザーのidとmailaddressを取得している。
+  created: function () {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // console.log(user);
+        this.uid = user.uid;
+        this.mail = user.email;
+        console.log(this.uid);
+        console.log(this.mail);
+      } else {
+        console.log("ユーザーがログインしていません");
+      }
+    });
   },
 };
 </script>
