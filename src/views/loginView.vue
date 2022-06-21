@@ -2,8 +2,8 @@
   <div>
     <form>
       <h1>Register</h1>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="text" placeholder="Email" v-model="email" />
+      <input type="text" placeholder="Password" v-model="password" />
     </form>
     <div class="form-item">
       <button><router-link to="/sign">新規登録</router-link></button>
